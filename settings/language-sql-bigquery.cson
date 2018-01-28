@@ -1,0 +1,6 @@
+'.source.sql-bigquery':
+  'editor':
+    'commentStart': '-- '
+    'foldEndPattern': '^\\s*\\)'
+    'increaseIndentPattern': '^\\s*(create|insert|delete|update|drop)\\b|\\((?!.*\\))'
+    'decreaseIndentPattern': '^\\s*\\)(?!=.*\\()'

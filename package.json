@@ -1,0 +1,16 @@
+{
+  "name": "language-sql-bigquery",
+  "version": "0.1.0",
+  "description": "BigQuery SQL language support in Atom",
+  "keywords": [
+    "language",
+    "grammar",
+    "sql",
+    "bigquery"
+  ],
+  "repository": "https://github.com/shinichi-takii/atom-language-sql-bigquery",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  }
+}
