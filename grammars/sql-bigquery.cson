@@ -65,7 +65,7 @@
         'name': 'entity.name.function.table.standard.sql'
       '5':
         'name': 'entity.name.function.table.legacy.sql'
-    'match': '(?i)(from|join)\\s+((`?)((?:[\\w\\-]+\\.)?(?:\\w+\\.)?[\\w\\*]+)\\3?|\\[((?:[\\w\\-]+\\:)?(?:\\w+\\.)?[\\w\\*]+)\\])'
+    'match': '(?i)(from|join|delete\\s+from|delete(?!\\s+from))\\s+((`?)((?:[\\w\\-]+\\.)?(?:\\w+\\.)?[\\w\\*]+)\\3?|\\[((?:[\\w\\-]+\\:)?(?:\\w+\\.)?[\\w\\*]+)\\])'
     'name': 'meta.create.from.sql'
   }
 
