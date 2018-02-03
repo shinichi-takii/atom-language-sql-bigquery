@@ -1,7 +1,11 @@
 # Changelog
 
+## 0.1.5
+- Support partition decorator.
+- Fix regexps content attribute.
+
 ## 0.1.4
-- Support for delete statement of tablename highlight
+- Support for delete statement of tablename highlight.
   - Add `DELETE FROM <tablename>` highlight regrexp.
 
 ## 0.1.3
