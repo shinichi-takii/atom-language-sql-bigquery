@@ -54,7 +54,9 @@
         'name': 'keyword.other.insert.sql'
       '3':
         'name': 'entity.name.function.table.standard.sql'
-    'match': '(?i:^\\b(insert(?:\\s+into)?)(?:\\s+(`?)((?:[\\w\\-]+\\.)?(?:\\w+\\.)?[\\w\\*]+)\\2)?)'
+      '4':
+        'name': 'variable.parameter.table.partition_decorator.sql'
+    'match': '(?i:^\\b(insert(?:\\s+into)?)(?:\\s+(`?)((?:[\\w\\-]+\\.)?(?:\\w+\\.)?\\w+)(\\*|\\$\\w+)?\\2)?)'
     'name': 'meta.create.DML.insert.sql'
   }
   {
@@ -64,8 +66,12 @@
       '4':
         'name': 'entity.name.function.table.standard.sql'
       '5':
-        'name': 'entity.name.function.table.legacy.sql'
-    'match': '(?i)(from|join|delete\\s+from|delete(?!\\s+from))\\s+((`?)((?:[\\w\\-]+\\.)?(?:\\w+\\.)?[\\w\\*]+)\\3?|\\[((?:[\\w\\-]+\\:)?(?:\\w+\\.)?[\\w\\*]+)\\])'
+        'name': 'variable.parameter.table.partition_decorator.sql'
+      '6':
+        'name': 'entity.name.function.table.partition_decorator.legacy.sql'
+      '7':
+        'name': 'variable.parameter.table.legacy.sql'
+    'match': '(?i)(from|join|delete\\s+from|delete(?!\\s+from))\\s+((`?)((?:[\\w\\-]+\\.)?(?:\\w+\\.)?\\w+)(\\*|\\$\\w+)?\\3?|\\[((?:[\\w\\-]+\\:)?(?:\\w+\\.)?\\w+)(\\*|\\$\\w+)?\\])'
     'name': 'meta.create.from.sql'
   }
 
@@ -244,12 +250,13 @@
         'begin': 'r[\'"]'
         'beginCaptures':
           '0':
-            'name': 'storage.type.string.regexp.begin.sql'
+            'name': 'storage.type.string.regex.begin.sql'
         'end': '[\'"]'
         'endCaptures':
           '0':
-            'name': 'storage.type.string.regexp.end.sql'
-        'name': 'string.regexp.sql'
+            'name': 'storage.type.string.regex.end.sql'
+        'name': 'meta.regex.sql'
+        'contentName': 'string.regexp.sql'
         'patterns': [
           {
             'include': '#string_interpolation'
