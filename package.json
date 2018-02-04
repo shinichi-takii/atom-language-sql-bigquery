@@ -1,6 +1,6 @@
 {
   "name": "language-sql-bigquery",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "BigQuery SQL language support in Atom",
   "keywords": [
     "language",
