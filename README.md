@@ -10,15 +10,21 @@ Adds syntax highlighting to BigQuery SQL files in Atom.
 - Syntax highlighting for Google BigQuery SQL language.
 - Supports [Standard SQL](https://cloud.google.com/bigquery/docs/reference/standard-sql/) and [Legacy SQL](https://cloud.google.com/bigquery/docs/reference/legacy-sql/).
 - Detect and highlight Legacy SQL only functions.
+- Code snippets with SQL, DML, DDL, and Standard SQL functions.
 
 
 ## Installation
 
 1. **Atom** > Preferences > Install tab
 1. Search for `language-sql-bigquery`
-1. Click the **Install** button.
+1. Click the **Install** button
 
 Or command-line install:
 ```bash
 $ apm install language-sql-bigquery
 ```
+
+
+## Usage
+1. Edit > Select Grammar (or `ctrl-shift-L`)
+1. Select to `SQL (BigQuery)`

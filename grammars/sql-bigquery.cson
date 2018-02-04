@@ -34,7 +34,7 @@
         'name': 'keyword.other.DML.sql'
       '5':
         'name': 'entity.name.function.sql'
-    'match': '(?i:^\\s*(create(?:\\s+or\\s+replace)?|drop)\\s+(table|view)\\b(?:\\s+(if\\s+not\\s+exists)\\b)?)(?:\\s+(`?)((?:[\\w\\-]+\\.)?(?:\\w+\\.)?[\\w\\*]+)\\4)?'
+    'match': '(?i:^\\s*(create(?:\\s+or\\s+replace)?|drop)\\s+(table|view)\\b(?:\\s+(if(?:\\s+not)?\\s+exists)\\b)?)(?:\\s+(`?)((?:[\\w\\-]+\\.)?(?:\\w+\\.)?[\\w\\*]+)\\4)?'
     'name': 'meta.create.sql'
   }
   {
@@ -71,12 +71,25 @@
         'name': 'entity.name.function.table.partition_decorator.legacy.sql'
       '7':
         'name': 'variable.parameter.table.legacy.sql'
-    'match': '(?i)(from|join|delete\\s+from|delete(?!\\s+from))\\s+((`?)((?:[\\w\\-]+\\.)?(?:\\w+\\.)?\\w+)(\\*|\\$\\w+)?\\3?|\\[((?:[\\w\\-]+\\:)?(?:\\w+\\.)?\\w+)(\\*|\\$\\w+)?\\])'
+    'match': '(?i)(from|join|delete\\s+from|delete(?!\\s+from)|update)\\s+((`?)((?:[\\w\\-]+\\.)?(?:\\w+\\.)?\\w+)(\\*|\\$\\w+)?\\3?|\\[((?:[\\w\\-]+\\:)?(?:\\w+\\.)?\\w+)(\\*|\\$\\w+)?\\])'
     'name': 'meta.create.from.sql'
+  }
+  {
+    'captures':
+      '2':
+        'name': 'entity.name.function.table.standard.sql'
+      '3':
+        'name': 'variable.parameter.table.partition_decorator.sql'
+      '4':
+        'name': 'entity.name.function.table.partition_decorator.legacy.sql'
+      '5':
+        'name': 'variable.parameter.table.legacy.sql'
+    'match': '^\\s*(?:(`)((?:[\\w\\-]+\\.)?(?:\\w+\\.)?\\w+)(\\*|\\$\\w+)?\\1|\\[((?:[\\w\\-]+\\:)?(?:\\w+\\.)?\\w+)(\\*|\\$\\w+)?\\])'
+    'name': 'meta.other.table.sql'
   }
 
   {
-    'match': '(?i)\\b(array|boolean|bytes|date(?!\\s*\\()|datetime(?!\\s*\\()|float|float64|int64|integer|record|string(?!\\s*\\()|struct|time(?!\\s*\\(|\\s+as\\s+of)|timestamp(?!\\s*\\())\\b'
+    'match': '(?i)\\b(array|boolean|bytes|date(?!\\s*\\()|datetime(?!\\s*\\()|float|float64|int64|integer|record|string(?!\\s*\\()|struct|time(?!\\s*\\(|\\s+as\\s+of|\\s+zone)|timestamp(?!\\s*\\())\\b'
     'name': 'storage.type.sql'
   }
   {
@@ -146,7 +159,7 @@
     'name': 'keyword.other.DDL.sql'
   }
   {
-    'match': '(?i:\\b(over|ignore|respect|nulls|interval|at|zone)\\b)'
+    'match': '(?i:\\b(over|ignore|respect|nulls|interval|at|zone|at\\s+time\\s+zone)\\b)'
     'name': 'keyword.other.function.sql'
   }
 
@@ -377,7 +390,7 @@
   'functions':
     'patterns': [
       {
-        'match': '(?i)\\b(CURRENT_(DATE|DATETIME|TIME(STAMP)?|USER)|(SESSION|SYSTEM)_USER|EXTRACT|UNNEST|CAST)\\b'
+        'match': '(?i)\\b(CURRENT_(DATE|DATETIME|TIME(STAMP)?|USER)|(SESSION|SYSTEM)_USER|EXTRACT|UNNEST|(SAFE_)?CAST)\\b'
         'name': 'support.function.scalar.sql'
       }
       {
@@ -397,7 +410,7 @@
         'name': 'support.function.aggregate.sql'
       }
       {
-        'match': '(?i)\\b(ARRAY_(CONCAT|LENGTH|TO_STRING|REVERSE)|GENERATE_(ARRAY|DATE_ARRAY))(?=\\s*\\()'
+        'match': '(?i)\\b(ARRAY_(CONCAT|LENGTH|TO_STRING|REVERSE)|GENERATE_(ARRAY|DATE_ARRAY)|(SAFE_)?(OFFSET|ORDINAL))(?=\\s*\\()'
         'name': 'support.function.aggregate.sql.array'
       }
       {
