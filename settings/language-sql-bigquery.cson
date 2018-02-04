@@ -2,5 +2,5 @@
   'editor':
     'commentStart': '-- '
     'foldEndPattern': '^\\s*\\)'
-    'increaseIndentPattern': '^\\s*(create|insert|delete|update|drop)\\b|\\((?!.*\\))'
+    'increaseIndentPattern': '\\((?!.*\\))'
     'decreaseIndentPattern': '^\\s*\\)(?!=.*\\()'

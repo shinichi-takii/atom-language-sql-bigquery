@@ -4,9 +4,10 @@
   "description": "BigQuery SQL language support in Atom",
   "keywords": [
     "language",
-    "grammar",
     "sql",
-    "bigquery"
+    "bigquery",
+    "grammar",
+    "snippets"
   ],
   "repository": "https://github.com/shinichi-takii/atom-language-sql-bigquery",
   "license": "MIT",
