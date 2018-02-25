@@ -962,6 +962,20 @@
     'description': """
       Converts a sequence of bytes to a string. Any invalid UTF-8 characters are replaced with the Unicode replacement character, `U+FFFD`.
     """
+  'SPLIT()':
+    'prefix': 'split'
+    'body': 'SPLIT(${1:value[, delimiter]})'
+    'description': """
+      Splits `value` using the `delimiter` argument.
+
+      For STRING, the default delimiter is the comma `,`.
+
+      For BYTES, you must specify a delimiter.
+
+      Splitting on an empty delimiter produces an array of UTF-8 characters for STRING values, and an array of BYTES for BYTES values.
+
+      Splitting an empty STRING returns an ARRAY with a single empty STRING.
+    """
   'STARTS_WITH()':
     'prefix': 'starts_with'
     'body': 'STARTS_WITH(${1:value1}, ${2:value2})'
@@ -1851,3 +1865,13 @@
     'description': """
       Returns `NULL` if `expression = expression_to_match` is true, otherwise returns `expression`. `expression` and `expression_to_match` must be implicitly coercible to a common supertype; equality comparison is done on coerced values.
     """
+
+  'EXTRACT(YEAR FROM date_expression)':
+    'prefix': 'year'
+    'body': 'EXTRACT(YEAR FROM ${1:date_expression})'
+  'EXTRACT(MONTH FROM date_expression)':
+    'prefix': 'month'
+    'body': 'EXTRACT(MONTH FROM ${1:date_expression})'
+  'EXTRACT(DAY FROM date_expression)':
+    'prefix': 'day'
+    'body': 'EXTRACT(DAY FROM ${1:date_expression})'
