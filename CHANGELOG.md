@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.1
+- Add snippets.
+  - `split` -> `SPLIT(value[, delimiter])`
+  - `year` -> `EXTRACT(YEAR FROM date_expression)`
+  - `month` -> `EXTRACT(MONTH FROM date_expression)`
+  - `day` -> `EXTRACT(DAY FROM date_expression)`
+
 ## 0.2.0
 - Create snippets.
 - Minor fixes.
