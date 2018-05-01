@@ -34,7 +34,9 @@
         'name': 'keyword.other.DML.sql'
       '5':
         'name': 'entity.name.function.sql'
-    'match': '(?i:^\\s*(create(?:\\s+or\\s+replace)?|drop)\\s+(table|view)\\b(?:\\s+(if(?:\\s+not)?\\s+exists)\\b)?)(?:\\s+(`?)((?:[\\w\\-]+\\.)?(?:\\w+\\.)?[\\w\\*]+)\\4)?'
+      '6':
+        'name': 'invalid.illegal.table.delimiter.sql'
+    'match': '(?i:^\\s*(create(?:\\s+or\\s+replace)?|drop)\\s+(table|view)\\b(?:\\s+(if(?:\\s+not)?\\s+exists)\\b)?)(?:\\s+(`?)((?:[\\w\\-\\{\\}]+(?:\\.|(\\:)))?(?:[\\w\\{\\}]+\\.)?[\\w\\{\\}\\*]+)\\4)?'
     'name': 'meta.create.sql'
   }
   {
@@ -55,8 +57,10 @@
       '3':
         'name': 'entity.name.function.table.standard.sql'
       '4':
+        'name': 'invalid.illegal.table.delimiter.sql'
+      '5':
         'name': 'variable.parameter.table.partition_decorator.sql'
-    'match': '(?i:^\\b(insert(?:\\s+into)?)(?:\\s+(`?)((?:[\\w\\-]+\\.)?(?:\\w+\\.)?\\w+)(\\*|\\$\\w+)?\\2)?)'
+    'match': '(?i:^\\b((?:insert|merge)(?:\\s+into)?)(?:\\s+(`?)((?:[\\w\\-\\{\\}]+(?:\\.|(\\:)))?(?:[\\w\\{\\}]+\\.)?[\\w\\{\\}]+)(\\*|\\$\\w+)?\\2)?)'
     'name': 'meta.create.DML.insert.sql'
   }
   {
@@ -66,12 +70,16 @@
       '4':
         'name': 'entity.name.function.table.standard.sql'
       '5':
-        'name': 'variable.parameter.table.partition_decorator.sql'
+        'name': 'invalid.illegal.table.delimiter.sql'
       '6':
-        'name': 'entity.name.function.table.partition_decorator.legacy.sql'
+        'name': 'variable.parameter.table.partition_decorator.sql'
       '7':
+        'name': 'entity.name.function.table.partition_decorator.legacy.sql'
+      '8':
+        'name': 'invalid.illegal.table.delimiter.sql'
+      '9':
         'name': 'variable.parameter.table.legacy.sql'
-    'match': '(?i)(from|join|delete\\s+from|delete(?!\\s+from)|update)\\s+((`?)((?:[\\w\\-]+\\.)?(?:\\w+\\.)?\\w+)(\\*|\\$\\w+)?\\3?|\\[((?:[\\w\\-]+\\:)?(?:\\w+\\.)?\\w+)(\\*|\\$\\w+)?\\])'
+    'match': '(?i)(from|join|delete\\s+from|delete(?!\\s+from)|update|using)\\s+((`?)((?:[\\w\\-\\{\\}]+(?:\\.|(\\:)))?(?:[\\w\\{\\}]+\\.)?[\\w\\{\\}]+)(\\*|\\$\\w+)?\\3?|\\[((?:[\\w\\-\\{\\}]+(?:\\:|(\\.)))?(?:[\\w\\{\\}]+\\.)?[\\w\\{\\}]+)(\\*|\\$\\w+)?\\])'
     'name': 'meta.create.from.sql'
   }
   {
@@ -79,13 +87,24 @@
       '2':
         'name': 'entity.name.function.table.standard.sql'
       '3':
-        'name': 'variable.parameter.table.partition_decorator.sql'
+        'name': 'invalid.illegal.table.delimiter.sql'
       '4':
-        'name': 'entity.name.function.table.partition_decorator.legacy.sql'
+        'name': 'variable.parameter.table.partition_decorator.sql'
       '5':
+        'name': 'entity.name.function.table.partition_decorator.legacy.sql'
+      '6':
+        'name': 'invalid.illegal.table.delimiter.sql'
+      '7':
         'name': 'variable.parameter.table.legacy.sql'
-    'match': '^\\s*(?:(`)((?:[\\w\\-]+\\.)?(?:\\w+\\.)?\\w+)(\\*|\\$\\w+)?\\1|\\[((?:[\\w\\-]+\\:)?(?:\\w+\\.)?\\w+)(\\*|\\$\\w+)?\\])'
+    'match': '^\\s*(?:(`)((?:[\\w\\-\\{\\}]+(?:\\.|(\\:)))?(?:[\\w\\{\\}]+\\.)?[\\w\\{\\}]+)(\\*|\\$\\w+)?\\1|\\[((?:[\\w\\-\\{\\}]+(?:\\:|(\\.)))?(?:[\\w\\{\\}]+\\.)?[\\w\\{\\}]+)(\\*|\\$\\w+)?\\])'
     'name': 'meta.other.table.sql'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'keyword.other.merge.sql'
+    'match': '(?i)(\\b(?:by)\\s+(?:target|source)\\b)'
+    'name': 'meta.create.DML.merge.sql'
   }
 
   {
@@ -157,6 +176,10 @@
   {
     'match': '(?i:\\b(create(\\s+(temporary|temp))?|drop|table|view|if|not|exists|partition|options|rows|range|unbounded|preceding|following|current|row|returns|language)\\b)'
     'name': 'keyword.other.DDL.sql'
+  }
+  {
+    'match': '(?i:\\b(merge|matched|default)\\b)'
+    'name': 'keyword.other.DML.merge.sql'
   }
   {
     'match': '(?i:\\b(over|ignore|respect|nulls|interval|at|zone|at\\s+time\\s+zone)\\b)'
@@ -432,6 +455,14 @@
       {
         'match': '(?i)\\b(COALESCE|IF|NULLIF|IFNULL)\\b'
         'name': 'support.function.conditional.sql'
+      }
+      {
+        'match': '(?i)\\b(ERROR)(?=\\s*\\()'
+        'name': 'support.function.debug.sql'
+      }
+      {
+        'match': '(?i)\\b(SAFE\\.\\w+)(?=\\s*\\()'
+        'name': 'support.function.debug.sql'
       }
 
       {

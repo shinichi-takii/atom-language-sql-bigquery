@@ -98,6 +98,26 @@
       SET ${4:column} = ${5:value}
       WHERE ${6:condition}
     """
+  'UPDATE ... SET FROM':
+    'prefix': 'update from'
+    'body': """
+      UPDATE `${1:project}.${2:dataset}.${3:table}` a
+      SET ${4:column} = ${5:value}
+      FROM `${6:project}.${7:dataset}.${8:table}` b
+      WHERE a.${9:column} = b.${9:column}
+    """
+
+  'MERGE':
+    'prefix': 'merge'
+    'body': """
+      MERGE INTO `${1:project}.${2:dataset}.${3:target_table}` t
+      USING `${4:project}.${5:dataset}.${6:source_table}` s
+      ON ${7:merge_condition}
+      WHEN MATCHED THEN
+      \tUPDATE SET ${8:target_column} = ${9:value}
+      WHEN NOT MATCHED THEN
+      \tINSERT (${10:target_column, ...}) VALUES(${11:source_column, ...})
+    """
 
   'CREATE TABLE':
     'prefix': 'create table'
@@ -131,6 +151,40 @@
       \t${4:column} ${5:type}
       )
       PARTITION BY DATE(_PARTITIONTIME)
+    """
+  'CREATE TABLE AS SELECT':
+    'prefix': 'create table as select'
+    'body': """
+      CREATE TABLE `${1:project}.${2:dataset}.${3:table}`
+      (
+      \t${4:column} ${5:type}
+      ) AS
+      SELECT
+      \t${6:column}
+      FROM `${7:project}.${8:dataset}.${9:table}`
+      WHERE ${10:condition}
+    """
+  'CREATE TABLE OPTIONS':
+    'prefix': 'create table options'
+    'body': """
+      OPTIONS (
+      \tdescription = "description",
+      \texpiration_timestamp = TIMESTAMP "YYYY-MM-DD HH:MI:SS UTC",
+      \tpartition_expiration_days = 1,
+      \trequire_partition_filter = false,
+      \tlabels = [("key", "value")]
+      )
+    """
+  'OPTIONS':
+    'prefix': 'options'
+    'body': """
+      OPTIONS (
+      \tdescription = "description",
+      \texpiration_timestamp = TIMESTAMP "YYYY-MM-DD HH:MI:SS UTC",
+      \tpartition_expiration_days = 1,
+      \trequire_partition_filter = false,
+      \tlabels = [("key", "value")]
+      )
     """
 
   'CREATE VIEW':
@@ -1875,3 +1929,21 @@
   'EXTRACT(DAY FROM date_expression)':
     'prefix': 'day'
     'body': 'EXTRACT(DAY FROM ${1:date_expression})'
+
+  'ERROR()':
+    'prefix': 'error'
+    'body': 'ERROR(${1:error_message})'
+    'description': """
+      Returns an error. The error_message argument is a STRING.
+
+      BigQuery treats ERROR in the same way as any expression that may result in an error: there is no special guarantee of evaluation order.
+    """
+
+  'SAFE.prefix()':
+    'prefix': 'safeprefix'
+    'body': 'SAFE.${1:function_name()}'
+    'description': """
+      If you begin a function with the SAFE. prefix, it will return NULL instead of an error. The SAFE. prefix only prevents errors from the prefixed function itself: it does not prevent errors that occur while evaluating argument expressions. The SAFE. prefix only prevents errors that occur because of the value of the function inputs, such as "value out of range" errors; other errors, such as internal or system errors, may still occur. If the function does not return an error, SAFE. has no effect on the output. If the function never returns an error, like RAND, then SAFE. has no effect.
+
+      Operators, such as + and =, do not support the SAFE. prefix. To prevent errors from a division operation, use SAFE_DIVIDE. Some operators, such as IN, ARRAY, and UNNEST, resemble functions, but do not support the SAFE. prefix. The CAST and EXTRACT functions also do not support the SAFE. prefix. To prevent errors from casting, use SAFE_CAST.
+    """
