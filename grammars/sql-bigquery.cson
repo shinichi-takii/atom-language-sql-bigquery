@@ -108,7 +108,7 @@
   }
 
   {
-    'match': '(?i)\\b(array|boolean|bytes|date(?!\\s*\\()|datetime(?!\\s*\\()|float|float64|int64|integer|record|string(?!\\s*\\()|struct|time(?!\\s*\\(|\\s+as\\s+of|\\s+zone)|timestamp(?!\\s*\\())\\b'
+    'match': '(?i)\\b(array|boolean|bytes|date(?!\\s*\\()|datetime(?!\\s*\\()|numeric|float|float64|int64|integer|record|string(?!\\s*\\()|struct|time(?!\\s*\\(|\\s+as\\s+of|\\s+zone)|timestamp(?!\\s*\\())\\b'
     'name': 'storage.type.sql'
   }
   {

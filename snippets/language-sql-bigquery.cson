@@ -51,9 +51,9 @@
     'body': """
       WITH ${1:with_query_name} AS (
         SELECT
-          ${1}
+          ${2}
         FROM
-          `${2:project}.${3:dataset}.${4:table}`
+          `${3:project}.${4:dataset}.${5:table}`
       )
 
     """
@@ -1920,15 +1920,52 @@
       Returns `NULL` if `expression = expression_to_match` is true, otherwise returns `expression`. `expression` and `expression_to_match` must be implicitly coercible to a common supertype; equality comparison is done on coerced values.
     """
 
-  'EXTRACT(YEAR FROM date_expression)':
-    'prefix': 'year'
-    'body': 'EXTRACT(YEAR FROM ${1:date_expression})'
-  'EXTRACT(MONTH FROM date_expression)':
-    'prefix': 'month'
-    'body': 'EXTRACT(MONTH FROM ${1:date_expression})'
+  'EXTRACT(DAYOFWEEK FROM date_expression)':
+    'prefix': 'dayofweek'
+    'body': 'EXTRACT(DAYOFWEEK FROM ${1:date_expression})'
   'EXTRACT(DAY FROM date_expression)':
     'prefix': 'day'
     'body': 'EXTRACT(DAY FROM ${1:date_expression})'
+  'EXTRACT(DAYOFYEAR FROM date_expression)':
+    'prefix': 'dayofyear'
+    'body': 'EXTRACT(DAYOFYEAR FROM ${1:date_expression})'
+  'EXTRACT(WEEK FROM date_expression)':
+    'prefix': 'week'
+    'body': 'EXTRACT(WEEK FROM ${1:date_expression})'
+  'EXTRACT(WEEK<WEEKDAY> FROM date_expression)':
+    'prefix': 'weekday'
+    'body': 'EXTRACT(WEEK(${1:<WEEKDAY>}) FROM ${2:date_expression})'
+  'EXTRACT(ISOWEEK FROM date_expression)':
+    'prefix': 'isoweek'
+    'body': 'EXTRACT(ISOWEEK FROM ${1:date_expression})'
+  'EXTRACT(MONTH FROM date_expression)':
+    'prefix': 'month'
+    'body': 'EXTRACT(MONTH FROM ${1:date_expression})'
+  'EXTRACT(QUARTER FROM date_expression)':
+    'prefix': 'quarter'
+    'body': 'EXTRACT(QUARTER FROM ${1:date_expression})'
+  'EXTRACT(YEAR FROM date_expression)':
+    'prefix': 'year'
+    'body': 'EXTRACT(YEAR FROM ${1:date_expression})'
+  'EXTRACT(ISOYEAR FROM date_expression)':
+    'prefix': 'isoyear'
+    'body': 'EXTRACT(ISOYEAR FROM ${1:date_expression})'
+
+  'EXTRACT(MICROSECOND FROM timestamp_expression)':
+    'prefix': 'microsecond'
+    'body': 'EXTRACT(MICROSECOND FROM ${1:timestamp_expression [AT TIME ZONE tz_spec]})'
+  'EXTRACT(MILLISECOND FROM timestamp_expression)':
+    'prefix': 'millisecond'
+    'body': 'EXTRACT(MILLISECOND FROM ${1:timestamp_expression [AT TIME ZONE tz_spec]})'
+  'EXTRACT(SECOND FROM timestamp_expression)':
+    'prefix': 'second'
+    'body': 'EXTRACT(SECOND FROM ${1:timestamp_expression [AT TIME ZONE tz_spec]})'
+  'EXTRACT(MINUTE FROM timestamp_expression)':
+    'prefix': 'minute'
+    'body': 'EXTRACT(MINUTE FROM ${1:timestamp_expression [AT TIME ZONE tz_spec]})'
+  'EXTRACT(HOUR FROM timestamp_expression)':
+    'prefix': 'hour'
+    'body': 'EXTRACT(HOUR FROM ${1:timestamp_expression [AT TIME ZONE tz_spec]})'
 
   'ERROR()':
     'prefix': 'error'

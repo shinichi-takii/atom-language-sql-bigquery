@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.2.3
+1. Add support 'NUMERIC' data type
+    - BigQuery added support for `NUMERIC` data type on May 15, 2018.
+
+2. Add snippet of part EXTRACT function
+    - Date EXTRACT
+        - `dayofweek` -> `EXTRACT(DAYOFWEEK FROM date_expression)`
+        - `dayofyear` -> `EXTRACT(DAYOFYEAR FROM date_expression)`
+        - `week` -> `EXTRACT(WEEK FROM date_expression)`
+        - `weekday` -> `EXTRACT(WEEK(<WEEKDAY>) FROM date_expression)`
+        - `isoweek` -> `EXTRACT(ISOWEEK FROM date_expression)`
+        - `quarter` -> `EXTRACT(QUARTER FROM date_expression)`
+        - `isoyear` -> `EXTRACT(ISOYEAR FROM date_expression)`
+
+    - Timestamp EXTRACT
+        - `microsecond` -> `EXTRACT(MICROSECOND FROM timestamp_expression [AT TIME ZONE tz_spec])`
+        - `millisecond` -> `EXTRACT(MILLISECOND FROM timestamp_expression [AT TIME ZONE tz_spec])`
+        - `second` -> `EXTRACT(SECOND FROM timestamp_expression [AT TIME ZONE tz_spec])`
+        - `minute` -> `EXTRACT(MINUTE FROM timestamp_expression [AT TIME ZONE tz_spec])`
+        - `hour` -> `EXTRACT(HOUR FROM timestamp_expression [AT TIME ZONE tz_spec])`
+
+3. Miner fix
+
 ## 0.2.2
 1. Add new function 'ERROR'
 
