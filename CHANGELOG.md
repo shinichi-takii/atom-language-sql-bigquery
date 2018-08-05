@@ -1,5 +1,48 @@
 # Changelog
 
+## 0.2.4
+1. Add supports new function 'GENERATE_TIMESTAMP_ARRAY', 'FROM_BASE32' and 'TO_BASE32'
+    - GENERATE_TIMESTAMP_ARRAY
+        - Function  
+          `GENERATE_TIMESTAMP_ARRAY(start_timestamp, end_timestamp, INTERVAL step_expression date_part)`
+        - Snippet  
+          `generate_timestamp_array` -> `GENERATE_TIMESTAMP_ARRAY(start_timestamp, end_timestamp, INTERVAL step_expression date_part)`
+        - Document  
+          https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#generate_timestamp_array
+
+    - FROM_BASE32
+        - Function  
+          `FROM_BASE32(string_expr)`
+        - Snippet  
+          `from_base32` -> `FROM_BASE32(string_expr)`
+        - Document  
+          https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#from_base32
+
+    - TO_BASE32
+        - Function  
+          `TO_BASE32(bytes_expr)`
+        - Snippet  
+          `to_base32` -> `TO_BASE32(bytes_expr)`
+        - Document  
+          https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#to_base32
+
+2. Add supports 'clustered tables'
+    - Enhancement snippets
+        - `create table partition` (`CREATE TABLE ... PARTITION BY`)
+
+    - Add snippets
+        - `clusterby` -> `CLUSTER BY clustering_column_list`
+
+3. Add DDL options 'kms_key_name', 'friendly_name'
+    - Add snippets to DDL options
+      - `kms_key_name`
+      - `friendly_name`
+
+    - Document  
+      https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#table_option_list
+
+4. Miner fix
+
 ## 0.2.3
 1. Add support 'NUMERIC' data type
     - BigQuery added support for `NUMERIC` data type on May 15, 2018.

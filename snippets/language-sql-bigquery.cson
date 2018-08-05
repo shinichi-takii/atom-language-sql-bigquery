@@ -46,6 +46,12 @@
   'ORDER BY':
     'prefix': 'orderby'
     'body': 'ORDER BY ${1}'
+  'PARTITION BY':
+    'prefix': 'partitionby'
+    'body': 'PARTITION BY ${1:DATE(_PARTITIONTIME)|DATE(<timestamp_column>)|<date_column>}'
+  'CLUSTER BY':
+    'prefix': 'clusterby'
+    'body': 'CLUSTER BY ${1:clustering_column_list}'
   'WITH ... AS':
     'prefix': 'with'
     'body': """
@@ -150,7 +156,8 @@
       (
       \t${4:column} ${5:type}
       )
-      PARTITION BY DATE(_PARTITIONTIME)
+      PARTITION BY ${6:DATE(_PARTITIONTIME)|DATE(<timestamp_column>)|<date_column>}
+      ${7:[CLUSTER BY clustering_column_list]}
     """
   'CREATE TABLE AS SELECT':
     'prefix': 'create table as select'
@@ -172,6 +179,8 @@
       \texpiration_timestamp = TIMESTAMP "YYYY-MM-DD HH:MI:SS UTC",
       \tpartition_expiration_days = 1,
       \trequire_partition_filter = false,
+      \tkms_key_name = "projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEYRING]/cryptoKeys/[KEY]",
+      \tfriendly_name = "friendly_name",
       \tlabels = [("key", "value")]
       )
     """
@@ -183,6 +192,8 @@
       \texpiration_timestamp = TIMESTAMP "YYYY-MM-DD HH:MI:SS UTC",
       \tpartition_expiration_days = 1,
       \trequire_partition_filter = false,
+      \tkms_key_name = "projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEYRING]/cryptoKeys/[KEY]",
+      \tfriendly_name = "friendly_name",
       \tlabels = [("key", "value")]
       )
     """
@@ -886,6 +897,12 @@
     'description': """
       BigQuery supports a FORMAT() function for formatting strings. This function is similar to the C printf function. It produces a STRING from a format string that contains zero or more format specifiers, along with a variable length list of additional arguments that matches the format specifiers.
     """
+  'FROM_BASE32()':
+    'prefix': 'from_base32'
+    'body': 'FROM_BASE32(${1:string_expr})'
+    'description': """
+      Converts the base32-encoded input `string_expr` into BYTES format. To convert BYTES to a base32-encoded STRING, use TO_BASE32.
+    """
   'FROM_BASE64()':
     'prefix': 'from_base64'
     'body': 'FROM_BASE64(${1:string_expr})'
@@ -1050,6 +1067,12 @@
 
       If `position` is negative, the function counts from the end of `value`, with -1 indicating the last character.
     """
+  'TO_BASE32()':
+    'prefix': 'to_base32'
+    'body': 'TO_BASE32(${1:bytes_expr})'
+    'description': """
+      Converts a sequence of BYTES into a base32-encoded STRING. To convert a base32-encoded STRING into BYTES, use FROM_BASE32.
+    """
   'TO_BASE64()':
     'prefix': 'to_base64'
     'body': 'TO_BASE64(${1:bytes_expr})'
@@ -1159,6 +1182,21 @@
       The `INT64_expr` parameter determines the increment used to generate dates. The default value for this parameter is 1 day.
 
       This function returns an error if `INT64_expr` is set to 0.
+    """
+  'GENERATE_TIMESTAMP_ARRAY()':
+    'prefix': 'generate_timestamp_array'
+    'body': 'GENERATE_TIMESTAMP_ARRAY(${1:start_timestamp}, ${2:end_timestamp[, INTERVAL step_expression date_part]})'
+    'description': """
+      Returns an `ARRAY` of `TIMESTAMPS` separated by a given interval. The `start_timestamp` and `end_timestamp` parameters determine the inclusive lower and upper bounds of the `ARRAY`.
+
+      The GENERATE_TIMESTAMP_ARRAY function accepts the following data types as inputs:
+
+        * `start_timestamp`: TIMESTAMP
+        * `end_timestamp`: TIMESTAMP
+        * `step_expression`: INT64
+        * Allowed date_part values are MICROSECOND, MILLISECOND, SECOND, MINUTE, HOUR, or DAY.
+
+      The step_expression parameter determines the increment used to generate timestamps.
     """
   '[OFFSET(zero_based_offset)]':
     'prefix': 'offset'

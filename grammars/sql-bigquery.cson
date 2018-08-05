@@ -174,7 +174,7 @@
     'name': 'keyword.other.DML.sql'
   }
   {
-    'match': '(?i:\\b(create(\\s+(temporary|temp))?|drop|table|view|if|not|exists|partition|options|rows|range|unbounded|preceding|following|current|row|returns|language)\\b)'
+    'match': '(?i:\\b(create(\\s+(temporary|temp))?|drop|table|view|if|not|exists|partition|cluster|options|rows|range|unbounded|preceding|following|current|row|returns|language)\\b)'
     'name': 'keyword.other.DDL.sql'
   }
   {
@@ -433,11 +433,11 @@
         'name': 'support.function.aggregate.sql'
       }
       {
-        'match': '(?i)\\b(ARRAY_(CONCAT|LENGTH|TO_STRING|REVERSE)|GENERATE_(ARRAY|DATE_ARRAY)|(SAFE_)?(OFFSET|ORDINAL))(?=\\s*\\()'
+        'match': '(?i)\\b(ARRAY_(CONCAT|LENGTH|TO_STRING|REVERSE)|GENERATE_(ARRAY|DATE_ARRAY|TIMESTAMP_ARRAY)|(SAFE_)?(OFFSET|ORDINAL))(?=\\s*\\()'
         'name': 'support.function.aggregate.sql.array'
       }
       {
-        'match': '(?i)\\b(BYTE_LENGTH|CHAR_LENGTH|CHARACTER_LENGTH|CODE_POINTS_TO_(BYTES|STRING)|CONCAT|BYTE_LENGTH|CHAR_LENGTH|CHARACTER_LENGTH|CONCAT|ENDS_WITH|FORMAT|FROM_(BASE64|HEX)|LENGTH|LPAD|LOWER|LTRIM|NORMALIZE|NORMALIZE_AND_CASEFOLD|REGEXP_(CONTAINS|EXTRACT|EXTRACT_ALL|REPLACE)|REPLACE(?!\\s+(table|view))|REPEAT|REVERSE|RPAD|RTRIM|SAFE_CONVERT_BYTES_TO_STRING|SPLIT|STARTS_WITH|STRPOS|SUBSTR|TO_(BASE64|CODE_POINTS|HEX)|TRIM|UPPER)\\b'
+        'match': '(?i)\\b(BYTE_LENGTH|CHAR_LENGTH|CHARACTER_LENGTH|CODE_POINTS_TO_(BYTES|STRING)|CONCAT|BYTE_LENGTH|CHAR_LENGTH|CHARACTER_LENGTH|CONCAT|ENDS_WITH|FORMAT|FROM_(BASE32|BASE64|HEX)|LENGTH|LPAD|LOWER|LTRIM|NORMALIZE|NORMALIZE_AND_CASEFOLD|REGEXP_(CONTAINS|EXTRACT|EXTRACT_ALL|REPLACE)|REPLACE(?!\\s+(table|view))|REPEAT|REVERSE|RPAD|RTRIM|SAFE_CONVERT_BYTES_TO_STRING|SPLIT|STARTS_WITH|STRPOS|SUBSTR|TO_(BASE32|BASE64|CODE_POINTS|HEX)|TRIM|UPPER)\\b'
         'name': 'support.function.string.sql'
       }
       {
