@@ -33,7 +33,15 @@
     - Add snippets
         - `clusterby` -> `CLUSTER BY clustering_column_list`
 
-3. Miner fix
+3. Add DDL options 'kms_key_name', 'friendly_name'
+    - Add snippets to DDL options
+      - `kms_key_name`
+      - `friendly_name`
+
+    - Document  
+      https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#table_option_list
+
+4. Miner fix
 
 ## 0.2.3
 1. Add support 'NUMERIC' data type
