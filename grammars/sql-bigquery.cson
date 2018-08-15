@@ -25,6 +25,9 @@
     'include': '#regexps'
   }
   {
+    'include': '#javascript'
+  }
+  {
     'captures':
       '1':
         'name': 'keyword.other.create.sql'
@@ -296,6 +299,31 @@
         'patterns': [
           {
             'include': '#string_interpolation'
+          }
+        ]
+      }
+    ]
+
+  'javascript':
+    'patterns': [
+      {
+        'begin': '(?i:\\b(language)\\s+(js)\\s+(as)\\s+)(""")'
+        'beginCaptures':
+          '1':
+            'name': 'keyword.other.alias.sql'
+          '3':
+            'name': 'keyword.other.alias.sql'
+          '4':
+            'name': 'string.quoted.double.begin.sql'
+        'end': '"""'
+        'endCaptures':
+          '0':
+            'name': 'string.quoted.double.end.sql'
+        'name': 'meta.embedded.js'
+        'contentName': 'source.embedded.js'
+        'patterns': [
+          {
+            'include': 'source.js'
           }
         ]
       }

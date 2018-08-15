@@ -1,5 +1,34 @@
 # Changelog
 
+## 0.2.5
+1. Added supports UDF(User-Defined Functions)
+    - Supported 'JavaScript UDF' highlighting
+    - Added snippets of UDF
+        - JavaScript UDF
+            - Prefix  
+              `create function javascript`
+            - body
+              ```sql
+              CREATE TEMPORARY FUNCTION functionName(param_name param_type[, ...])
+              RETURNS data_type
+              LANGUAGE js AS """
+                return "expression";
+              """;
+              ```
+        - SQL UDF
+            - Prefix  
+              `create function sql`
+            - body
+              ```sql
+              CREATE TEMPORARY FUNCTION functionName(param_name param_type[, ...])
+              [RETURNS data_type]
+              AS (
+                sql_expression
+              );
+              ```
+    - Document  
+      https://cloud.google.com/bigquery/docs/reference/standard-sql/user-defined-functions
+
 ## 0.2.4
 1. Add supports new function 'GENERATE_TIMESTAMP_ARRAY', 'FROM_BASE32' and 'TO_BASE32'
     - GENERATE_TIMESTAMP_ARRAY
@@ -135,7 +164,7 @@
       { when_clause }
       ```
     - Snippet
-        - Prefix
+        - Prefix  
           `merge`
         - body
           ```sql
