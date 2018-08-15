@@ -223,6 +223,25 @@
       FROM `${5:project}.${5:dataset}.${6:table}`
     """
 
+  'CREATE JavaScript FUNCTION':
+    'prefix': 'create function javascript'
+    'body': """
+      CREATE TEMPORARY FUNCTION ${1:functionName}(${2:param_name param_type[, ...]})
+      RETURNS ${3:data_type}
+      LANGUAGE js AS \"\"\"
+      \t${4:return \"expression\";}
+      \"\"\";
+    """
+  'CREATE SQL FUNCTION':
+    'prefix': 'create function sql'
+    'body': """
+      CREATE TEMPORARY FUNCTION ${1:functionName}(${2:param_name param_type[, ...]})
+      ${3:[RETURNS data_type]}
+      AS (
+      \t${4:sql_expression}
+      );
+    """
+
   'DROP TABLE':
     'prefix': 'drop table'
     'body': """
