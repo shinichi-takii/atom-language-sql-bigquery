@@ -242,6 +242,15 @@
       );
     """
 
+  'CREATE MODEL':
+    'prefix': 'create model'
+    'body': """
+      ${1:CREATE MODEL | CREATE MODEL IF NOT EXISTS | CREATE OR REPLACE MODEL} `${2:project}.${3:dataset}.${4:model}`
+      ${5:[OPTIONS(model_option_list)]}
+      AS
+      ${6:query_statement}
+    """
+
   'DROP TABLE':
     'prefix': 'drop table'
     'body': """
@@ -2040,4 +2049,19 @@
       If you begin a function with the SAFE. prefix, it will return NULL instead of an error. The SAFE. prefix only prevents errors from the prefixed function itself: it does not prevent errors that occur while evaluating argument expressions. The SAFE. prefix only prevents errors that occur because of the value of the function inputs, such as "value out of range" errors; other errors, such as internal or system errors, may still occur. If the function does not return an error, SAFE. has no effect on the output. If the function never returns an error, like RAND, then SAFE. has no effect.
 
       Operators, such as + and =, do not support the SAFE. prefix. To prevent errors from a division operation, use SAFE_DIVIDE. Some operators, such as IN, ARRAY, and UNNEST, resemble functions, but do not support the SAFE. prefix. The CAST and EXTRACT functions also do not support the SAFE. prefix. To prevent errors from casting, use SAFE_CAST.
+    """
+
+  'ML.EVALUATE()':
+    'prefix': 'mlevaluate'
+    'body': """
+      ML.EVALUATE(MODEL `${1:project}.${2:dataset}.${3:model}`,
+      \t${4:\{TABLE table_name | (query_statement)\}},
+      \t${5:[STRUCT( AS threshold)]})
+    """
+  'ML.ROC_CURVE()':
+    'prefix': 'mlroccurve'
+    'body': """
+      ML.ROC_CURVE(MODEL `${1:project}.${2:dataset}.${3:model}`,
+      \t${4:\{TABLE table_name | (query_statement)\}},
+      \t${5:[GENERATE_ARRAY(thresholds)]})
     """

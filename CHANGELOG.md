@@ -1,5 +1,38 @@
 # Changelog
 
+## 0.2.6
+1. Add support 'BOOL' data type
+    - Supported syntax highlighting
+2. Added supports 'BigQuery ML'
+    - Supported syntax highlighting
+    - Added snippets of `CREATE MODEL` statement
+        - Prefix  
+          `create model`
+        - body
+          ```sql
+          CREATE MODEL | CREATE MODEL IF NOT EXISTS | CREATE OR REPLACE MODEL `project.dataset.model`
+          [OPTIONS(model_option_list)]
+          [AS query_statement]
+          ```
+    - Added snippets of `ML.EVALUATE` function
+        - Prefix  
+          `mlevaluate`
+        - body
+          ```sql
+          ML.EVALUATE(MODEL `project.dataset.model`,
+            {TABLE table_name | (query_statement)},
+            [STRUCT( AS threshold)])
+          ```
+    - Added snippets of `ML.ROC_CURVE` function
+        - Prefix  
+          `mlroccurve`
+        - body
+          ```sql
+          ML.ROC_CURVE(MODEL `project.dataset.model`,
+            {TABLE table_name | (query_statement)},
+            [GENERATE_ARRAY(thresholds)])
+          ```
+
 ## 0.2.5
 1. Added supports UDF(User-Defined Functions)
     - Supported 'JavaScript UDF' highlighting
