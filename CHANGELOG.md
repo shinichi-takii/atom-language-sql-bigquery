@@ -3,6 +3,8 @@
 ## 0.2.6
 1. Add support 'BOOL' data type
     - Supported syntax highlighting
+    - Document  
+      https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#boolean-type
 2. Added supports 'BigQuery ML'
     - Supported syntax highlighting
     - Added snippets of `CREATE MODEL` statement
@@ -32,6 +34,8 @@
             {TABLE table_name | (query_statement)},
             [GENERATE_ARRAY(thresholds)])
           ```
+    - Document  
+      https://cloud.google.com/bigquery/docs/bigqueryml
 
 ## 0.2.5
 1. Added supports UDF(User-Defined Functions)
