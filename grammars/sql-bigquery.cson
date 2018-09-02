@@ -506,7 +506,7 @@
         'name': 'support.function.debug.sql'
       }
       {
-        'match': '(?i)\\b(ML\\.(EVALUATE|ROC_CURVE))\\b'
+        'match': '(?i)\\b(ML\\.(EVALUATE|ROC_CURVE|TRAINING_INFO|FEATURE_INFO|WEIGHTS))\\b'
         'name': 'support.function.ml.sql'
       }
 

@@ -1,7 +1,38 @@
 # Changelog
 
+## 0.2.7
+1. Added supports 'BigQuery ML' functions
+    - Supported syntax highlighting
+    - Added snippets of `ML.TRAINING_INFO` function
+        - Prefix  
+          `mltraininginfo`
+        - body
+          ```sql
+          ML.TRAINING_INFO(MODEL `project.dataset.model`)
+          ```
+        - Document  
+          https://cloud.google.com/bigquery/docs/reference/standard-sql/bigqueryml-syntax-train
+    - Added snippets of `ML.FEATURE_INFO` function
+        - Prefix  
+          `mlfeatureinfo`
+        - body
+          ```sql
+          ML.FEATURE_INFO(MODEL `project.dataset.model`)
+          ```
+        - Document  
+          https://cloud.google.com/bigquery/docs/reference/standard-sql/bigqueryml-syntax-feature
+    - Added snippets of `ML.WEIGHTS` function
+        - Prefix  
+          `mlweights`
+        - body
+          ```sql
+          ML.WEIGHTS(MODEL `project.dataset.model`)
+          ```
+        - Document  
+          https://cloud.google.com/bigquery/docs/reference/standard-sql/bigqueryml-syntax-weights
+
 ## 0.2.6
-1. Add support 'BOOL' data type
+1. Added supports 'BOOL' data type
     - Supported syntax highlighting
     - Document  
       https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#boolean-type

@@ -2065,3 +2065,12 @@
       \t${4:\{TABLE table_name | (query_statement)\}},
       \t${5:[GENERATE_ARRAY(thresholds)]})
     """
+  'ML.TRAINING_INFO()':
+    'prefix': 'mltraininginfo'
+    'body': 'ML.TRAINING_INFO(MODEL `${1:project}.${2:dataset}.${3:model}`)'
+  'ML.FEATURE_INFO()':
+    'prefix': 'mlfeatureinfo'
+    'body': 'ML.FEATURE_INFO(MODEL `${1:project}.${2:dataset}.${3:model}`)'
+  'ML.WEIGHTS()':
+    'prefix': 'mlweights'
+    'body': 'ML.WEIGHTS(MODEL `${1:project}.${2:dataset}.${3:model}`)'
