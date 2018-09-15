@@ -1,7 +1,69 @@
 # Changelog
 
-## 0.2.7
+## 0.2.8
 1. Added supports 'BigQuery ML' functions
+    - Supported syntax highlighting
+    - Added snippets
+    - Functions
+    - Added snippets of `ML.CONFUSION_MATRIX` function
+        - Prefix  
+          `mlconfusionmatrix`
+        - body
+          ```sql
+          ML.CONFUSION_MATRIX(MODEL `project.dataset.model`,
+            {TABLE table_name | (query_statement)},
+            [STRUCT( AS threshold)])
+          ```
+        - Document  
+          https://cloud.google.com/bigquery/docs/reference/standard-sql/bigqueryml-syntax-confusion
+
+2. Added supports Geography functions
+    - Supported syntax highlighting
+    - Added snippets
+    - Document  
+      https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions
+    - Functions
+
+      |Function Name|Snippet|Body|
+      |:--|:--|:--|
+      |`ST_GEOGPOINT`|`stgeogpoint`|`ST_GEOGPOINT(longitude, latitude)`|
+      |`ST_MAKELINE`|`stmakeline`|`ST_MAKELINE({geography_1, geography_2 | array_of_geography})`|
+      |`ST_MAKEPOLYGON`|`stmakepolygon`|`ST_MAKEPOLYGON(geography_expression[, array_of_geography])`|
+      |`ST_MAKEPOLYGONORIENTED`|`stmakepolygonoriented`|`ST_MAKEPOLYGONORIENTED(array_of_geography)`|
+      |`ST_GEOGFROMGEOJSON`|`stgeogfromgeojson`|`ST_GEOGFROMGEOJSON(geojson_string)`|
+      |`ST_GEOGFROMTEXT`|`stgeogfromtext`|`ST_GEOGFROMTEXT(wkt_string)`|
+      |`ST_ASGEOJSON`|`stasgeojson`|`ST_ASGEOJSON(geography_expression)`|
+      |`ST_ASTEXT`|`stastext`|`ST_ASTEXT(geography_expression)`|
+      |`ST_BOUNDARY`|`stboundary`|`ST_BOUNDARY(geography_expression)`|
+      |`ST_CENTROID`|`stcentroid`|`ST_CENTROID(geography_expression)`|
+      |`ST_CLOSESTPOINT`|`stclosestpoint`|`ST_CLOSESTPOINT(geography_1, geography_2[, spheroid=FALSE])`|
+      |`ST_DIFFERENCE`|`stdifference`|`ST_DIFFERENCE(geography_1, geography_2)`|
+      |`ST_INTERSECTION`|`stintersection`|`ST_INTERSECTION(geography_1, geography_2)`|
+      |`ST_SNAPTOGRID`|`stsnaptogrid`|`ST_SNAPTOGRID(geography_expression, grid_size)`|
+      |`ST_UNION`|`stunion`|`ST_UNION({geography_1, geography_2 | array_of_geography})`|
+      |`ST_CONTAINS`|`stcontains`|`ST_CONTAINS(geography_1, geography_2)`|
+      |`ST_COVEREDBY`|`stcoveredby`|`ST_COVEREDBY(geography_1, geography_2)`|
+      |`ST_COVERS`|`stcovers`|`ST_COVERS(geography_1, geography_2)`|
+      |`ST_DISJOINT`|`stdisjoint`|`ST_DISJOINT(geography_1, geography_2)`|
+      |`ST_DWITHIN`|`stdwithin`|`ST_DWITHIN(geography_1, geography_2, distance[, spheroid=FALSE])`|
+      |`ST_EQUALS`|`stequals`|`ST_EQUALS(geography_1, geography_2)`|
+      |`ST_INTERSECTS`|`stintersects`|`ST_INTERSECTS(geography_1, geography_2)`|
+      |`ST_INTERSECTSBOX`|`stintersectsbox`|`ST_INTERSECTSBOX(geography, lng1, lat1, lng2, lat2)`|
+      |`ST_TOUCHES`|`sttouches`|`ST_TOUCHES(geography_1, geography_2)`|
+      |`ST_WITHIN`|`stwithin`|`ST_WITHIN(geography_1, geography_2)`|
+      |`ST_ISEMPTY`|`stisempty`|`ST_ISEMPTY(geography_expression)`|
+      |`ST_ISCOLLECTION`|`stiscollection`|`ST_ISCOLLECTION(geography_expression)`|
+      |`ST_DIMENSION`|`stdimension`|`ST_DIMENSION(geography_expression)`|
+      |`ST_NUMPOINTS`|`stnumpoints`|`ST_NUMPOINTS(geography_expression)`|
+      |`ST_AREA`|`starea`|`ST_AREA(geography_expression[, spheroid=FALSE])`|
+      |`ST_DISTANCE`|`stdistance`|`ST_DISTANCE(geography_1, geography_2[, spheroid=FALSE])`|
+      |`ST_LENGTH`|`stlength`|`ST_LENGTH(geography_expression[, spheroid=FALSE])`|
+      |`ST_MAXDISTANCE`|`stmaxdistance`|`ST_MAXDISTANCE(geography_1, geography_2[, spheroid=FALSE])`|
+      |`ST_PERIMETER`|`stperimeter`|`ST_PERIMETER(geography_expression[, spheroid=FALSE])`|
+      |`ST_UNION_AGG`|`stunionagg`|`ST_UNION_AGG(geography)`|
+
+## 0.2.7
+1. Added supports 'BigQuery ML' Functions
     - Supported syntax highlighting
     - Added snippets of `ML.TRAINING_INFO` function
         - Prefix  
