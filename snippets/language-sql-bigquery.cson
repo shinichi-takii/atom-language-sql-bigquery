@@ -2065,6 +2065,13 @@
       \t${4:\{TABLE table_name | (query_statement)\}},
       \t${5:[GENERATE_ARRAY(thresholds)]})
     """
+  'ML.CONFUSION_MATRIX()':
+    'prefix': 'mlconfusionmatrix'
+    'body': """
+      ML.CONFUSION_MATRIX(MODEL `${1:project}.${2:dataset}.${3:model}`,
+      \t${4:\{TABLE table_name | (query_statement)\}},
+      \t${5:[GENERATE_ARRAY(thresholds)]})
+    """
   'ML.TRAINING_INFO()':
     'prefix': 'mltraininginfo'
     'body': 'ML.TRAINING_INFO(MODEL `${1:project}.${2:dataset}.${3:model}`)'
@@ -2074,3 +2081,109 @@
   'ML.WEIGHTS()':
     'prefix': 'mlweights'
     'body': 'ML.WEIGHTS(MODEL `${1:project}.${2:dataset}.${3:model}`)'
+
+  'ST_GEOGPOINT()':
+    'prefix': 'stgeogpoint'
+    'body': 'ST_GEOGPOINT(${1:longitude}, ${2:latitude})'
+  'ST_MAKELINE()':
+    'prefix': 'stmakeline'
+    'body': 'ST_MAKELINE(${1:geography_1, geography_2 | array_of_geography})'
+  'ST_MAKEPOLYGON()':
+    'prefix': 'stmakepolygon'
+    'body': 'ST_MAKEPOLYGON(${1:geography_expression[, array_of_geography]})'
+  'ST_MAKEPOLYGONORIENTED()':
+    'prefix': 'stmakepolygonoriented'
+    'body': 'ST_MAKEPOLYGONORIENTED(${1:array_of_geography})'
+  'ST_GEOGFROMGEOJSON()':
+    'prefix': 'stgeogfromgeojson'
+    'body': 'ST_GEOGFROMGEOJSON(${1:geojson_string})'
+  'ST_GEOGFROMTEXT()':
+    'prefix': 'stgeogfromtext'
+    'body': 'ST_GEOGFROMTEXT(${1:wkt_string})'
+  'ST_ASGEOJSON()':
+    'prefix': 'stasgeojson'
+    'body': 'ST_ASGEOJSON(${1:geography_expression})'
+  'ST_ASTEXT()':
+    'prefix': 'stastext'
+    'body': 'ST_ASTEXT(${1:geography_expression})'
+  'ST_BOUNDARY()':
+    'prefix': 'stboundary'
+    'body': 'ST_BOUNDARY(${1:geography_expression})'
+  'ST_CENTROID()':
+    'prefix': 'stcentroid'
+    'body': 'ST_CENTROID(${1:geography_expression})'
+  'ST_CLOSESTPOINT()':
+    'prefix': 'stclosestpoint'
+    'body': 'ST_CLOSESTPOINT(${1:geography_1}, ${2:geography_2[, spheroid=FALSE]})'
+  'ST_DIFFERENCE()':
+    'prefix': 'stdifference'
+    'body': 'ST_DIFFERENCE(${1:geography_1}, ${2:geography_2})'
+  'ST_INTERSECTION()':
+    'prefix': 'stintersection'
+    'body': 'ST_INTERSECTION(${1:geography_1}, ${2:geography_2})'
+  'ST_SNAPTOGRID()':
+    'prefix': 'stsnaptogrid'
+    'body': 'ST_SNAPTOGRID(${1:geography_expression}, ${2:grid_size})'
+  'ST_UNION()':
+    'prefix': 'stunion'
+    'body': 'ST_UNION(${1:geography_1, geography_2 | array_of_geography})'
+  'ST_CONTAINS()':
+    'prefix': 'stcontains'
+    'body': 'ST_CONTAINS(${1:geography_1}, ${2:geography_2})'
+  'ST_COVEREDBY()':
+    'prefix': 'stcoveredby'
+    'body': 'ST_COVEREDBY(${1:geography_1}, ${2:geography_2})'
+  'ST_COVERS()':
+    'prefix': 'stcovers'
+    'body': 'ST_COVERS(${1:geography_1}, ${2:geography_2})'
+  'ST_DISJOINT()':
+    'prefix': 'stdisjoint'
+    'body': 'ST_DISJOINT(${1:geography_1}, ${2:geography_2})'
+  'ST_DWITHIN()':
+    'prefix': 'stdwithin'
+    'body': 'ST_DWITHIN(${1:geography_1}, ${2:geography_2}, ${3:distance[, spheroid=FALSE]})'
+  'ST_EQUALS()':
+    'prefix': 'stequals'
+    'body': 'ST_EQUALS(${1:geography_1}, ${2:geography_2})'
+  'ST_INTERSECTS()':
+    'prefix': 'stintersects'
+    'body': 'ST_INTERSECTS(${1:geography_1}, ${2:geography_2})'
+  'ST_INTERSECTSBOX()':
+    'prefix': 'stintersectsbox'
+    'body': 'ST_INTERSECTSBOX(${1:geography}, ${2:lng1}, ${3:lat1}, ${4:lng2}, ${5:lat2})'
+  'ST_TOUCHES()':
+    'prefix': 'sttouches'
+    'body': 'ST_TOUCHES(${1:geography_1}, ${2:geography_2})'
+  'ST_WITHIN()':
+    'prefix': 'stwithin'
+    'body': 'ST_WITHIN(${1:geography_1}, ${2:geography_2})'
+  'ST_ISEMPTY()':
+    'prefix': 'stisempty'
+    'body': 'ST_ISEMPTY(${1:geography_expression})'
+  'ST_ISCOLLECTION()':
+    'prefix': 'stiscollection'
+    'body': 'ST_ISCOLLECTION(${1:geography_expression})'
+  'ST_DIMENSION()':
+    'prefix': 'stdimension'
+    'body': 'ST_DIMENSION(${1:geography_expression})'
+  'ST_NUMPOINTS()':
+    'prefix': 'stnumpoints'
+    'body': 'ST_NUMPOINTS(${1:geography_expression})'
+  'ST_AREA()':
+    'prefix': 'starea'
+    'body': 'ST_AREA(${1:geography_expression[, spheroid=FALSE]})'
+  'ST_DISTANCE()':
+    'prefix': 'stdistance'
+    'body': 'ST_DISTANCE(${1:geography_1}, ${2:geography_2[, spheroid=FALSE]})'
+  'ST_LENGTH()':
+    'prefix': 'stlength'
+    'body': 'ST_LENGTH(${1:geography_expression[, spheroid=FALSE]})'
+  'ST_MAXDISTANCE()':
+    'prefix': 'stmaxdistance'
+    'body': 'ST_MAXDISTANCE(${1:geography_1}, ${2:geography_2[, spheroid=FALSE]})'
+  'ST_PERIMETER()':
+    'prefix': 'stperimeter'
+    'body': 'ST_PERIMETER(${1:geography_expression[, spheroid=FALSE]})'
+  'ST_UNION_AGG()':
+    'prefix': 'stunionagg'
+    'body': 'ST_UNION_AGG(${1:geography})'
