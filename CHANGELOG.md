@@ -1,10 +1,47 @@
 # Changelog
 
+## 1.0.0
+1. Added supports new function `ML.PREDICT`
+  - Supported syntax highlighting
+  - Added snippets of `ML.PREDICT` function
+      - Prefix  
+        `mlpredict`
+      - body
+        ```sql
+        ML.PREDICT(MODEL `project.dataset.model`,
+          {TABLE table_name | (query_statement)},
+          [STRUCT(<threshold FLOAT64> AS threshold)])
+        ```
+      - Document  
+        https://cloud.google.com/bigquery/docs/reference/standard-sql/bigqueryml-syntax-predict
+  - BigQuery release notes
+    - [December 13, 2018](https://cloud.google.com/bigquery/docs/release-notes#december_13_2018)
+
+2. Added supports `ML.PREDICT` function standardization parameter
+  - Snippet supports to addition of standardization parameter.
+    - Prefix  
+      `mlpredict`
+    - body
+      - old
+        ```sql
+        ML.WEIGHTS(MODEL `project.dataset.model`)
+        ```
+      - new
+        ```sql
+        ML.WEIGHTS(MODEL `project.dataset.model`,
+          [STRUCT(<T> AS standardize)])
+        ```
+    - Document  
+      https://cloud.google.com/bigquery/docs/reference/standard-sql/bigqueryml-syntax-weights
+  - BigQuery release notes
+    - [December 13, 2018](https://cloud.google.com/bigquery/docs/release-notes#december_13_2018)
+
+3. Fix syntax highlighting of strings
+
+
 ## 0.2.8
 1. Added supports 'BigQuery ML' functions
     - Supported syntax highlighting
-    - Added snippets
-    - Functions
     - Added snippets of `ML.CONFUSION_MATRIX` function
         - Prefix  
           `mlconfusionmatrix`

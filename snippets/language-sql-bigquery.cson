@@ -2056,7 +2056,7 @@
     'body': """
       ML.EVALUATE(MODEL `${1:project}.${2:dataset}.${3:model}`,
       \t${4:\{TABLE table_name | (query_statement)\}},
-      \t${5:[STRUCT( AS threshold)]})
+      \t${5:[STRUCT(<T> AS threshold)]})
     """
   'ML.ROC_CURVE()':
     'prefix': 'mlroccurve'
@@ -2080,7 +2080,17 @@
     'body': 'ML.FEATURE_INFO(MODEL `${1:project}.${2:dataset}.${3:model}`)'
   'ML.WEIGHTS()':
     'prefix': 'mlweights'
-    'body': 'ML.WEIGHTS(MODEL `${1:project}.${2:dataset}.${3:model}`)'
+    'body': """
+      ML.WEIGHTS(MODEL `${1:project}.${2:dataset}.${3:model}`,
+      \t${4:[STRUCT(<T> AS standardize)]})
+    """
+  'ML.PREDICT()':
+    'prefix': 'mlpredict'
+    'body': """
+      ML.PREDICT(MODEL `${1:project}.${2:dataset}.${3:model}`,
+      \t${4:\{TABLE table_name | (query_statement)\}},
+      \t${5:[STRUCT(<threshold FLOAT64> AS threshold)]})
+    """
 
   'ST_GEOGPOINT()':
     'prefix': 'stgeogpoint'

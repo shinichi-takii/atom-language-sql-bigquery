@@ -299,11 +299,11 @@
   'regexps':
     'patterns': [
       {
-        'begin': 'r[\'"]'
+        'begin': 'r[\'\"]'
         'beginCaptures':
           '0':
             'name': 'storage.type.string.regex.begin.sql'
-        'end': '[\'"]'
+        'end': '[\'\"]'
         'endCaptures':
           '0':
             'name': 'storage.type.string.regex.end.sql'
@@ -312,6 +312,7 @@
         'patterns': [
           {
             'include': '#string_interpolation'
+            'include': '#string_escape'
           }
         ]
       }
@@ -382,6 +383,22 @@
         ]
       }
       {
+        'begin': '\"'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.string.begin.sql'
+        'end': '\"'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.string.end.sql'
+        'name': 'string.quoted.double.sql'
+        'patterns': [
+          {
+            'include': '#string_escape'
+          }
+        ]
+      }
+      {
         'captures':
           '1':
             'name': 'punctuation.definition.string.begin.sql'
@@ -416,22 +433,6 @@
         'comment': 'this is faster than the next begin/end rule since sub-pattern will match till end-of-line and SQL files tend to have very long lines.'
         'match': '(")[^"#]*(")'
         'name': 'string.quoted.double.sql'
-      }
-      {
-        'begin': '"'
-        'beginCaptures':
-          '0':
-            'name': 'punctuation.definition.string.begin.sql'
-        'end': '"'
-        'endCaptures':
-          '0':
-            'name': 'punctuation.definition.string.end.sql'
-        'name': 'string.quoted.double.sql'
-        'patterns': [
-          {
-            'include': '#string_interpolation'
-          }
-        ]
       }
       {
         'begin': '%\\{'
@@ -506,7 +507,7 @@
         'name': 'support.function.debug.sql'
       }
       {
-        'match': '(?i)\\b(ML\\.(EVALUATE|ROC_CURVE|CONFUSION_MATRIX|TRAINING_INFO|FEATURE_INFO|WEIGHTS))\\b'
+        'match': '(?i)\\b(ML\\.(EVALUATE|ROC_CURVE|CONFUSION_MATRIX|TRAINING_INFO|FEATURE_INFO|WEIGHTS|PREDICT))\\b'
         'name': 'support.function.ml.sql'
       }
       {
