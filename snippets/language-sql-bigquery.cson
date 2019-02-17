@@ -64,6 +64,13 @@
 
     """
 
+  '_TABLE_SUFFIX BETWEEN ...':
+    'prefix': '_tablesuffix'
+    'body': '_TABLE_SUFFIX BETWEEN "${1:from}" AND "${2:to}"'
+  '_TABLE_SUFFIX BETWEEN ..':
+    'prefix': 'tablesuffix'
+    'body': '_TABLE_SUFFIX BETWEEN "${1:from}" AND "${2:to}"'
+
   '_PARTITIONTIME BETWEEN ...':
     'prefix': '_partitiontime'
     'body': '_PARTITIONTIME BETWEEN "${1:yyyy-mm-dd}" AND "${2:yyyy-mm-dd}"'
@@ -271,6 +278,58 @@
     'prefix': 'drop view if exists'
     'body': """
       DROP VIEW IF EXISTS `${1:project}.${2:dataset}.${3:view}`
+    """
+
+  'ALTER TABLE SET OPTIONS':
+    'prefix': 'altertable'
+    'body': """
+      ALTER TABLE `${1:project}.${2:dataset}.${3:table}`
+      SET OPTIONS (
+      \tdescription = "description",
+      \texpiration_timestamp = TIMESTAMP "YYYY-MM-DD HH:MI:SS UTC",
+      \tpartition_expiration_days = 1,
+      \trequire_partition_filter = false,
+      \tkms_key_name = "projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEYRING]/cryptoKeys/[KEY]",
+      \tfriendly_name = "friendly_name",
+      \tlabels = [("key", "value")]
+      )
+    """
+  'ALTER TABLE IF EXISTS SET OPTIONS':
+    'prefix': 'altertableifexists'
+    'body': """
+      ALTER TABLE IF EXISTS `${1:project}.${2:dataset}.${3:table}`
+      SET OPTIONS (
+      \tdescription = "description",
+      \texpiration_timestamp = TIMESTAMP "YYYY-MM-DD HH:MI:SS UTC",
+      \tpartition_expiration_days = 1,
+      \trequire_partition_filter = false,
+      \tkms_key_name = "projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEYRING]/cryptoKeys/[KEY]",
+      \tfriendly_name = "friendly_name",
+      \tlabels = [("key", "value")]
+      )
+    """
+
+  'ALTER VIEW SET OPTIONS':
+    'prefix': 'alterview'
+    'body': """
+      ALTER VIEW `${1:project}.${2:dataset}.${3:view}`
+      SET OPTIONS (
+      \tdescription = "description",
+      \texpiration_timestamp = TIMESTAMP "YYYY-MM-DD HH:MI:SS UTC",
+      \tfriendly_name = "friendly_name",
+      \tlabels = [("key", "value")]
+      )
+    """
+  'ALTER VIEW IF EXISTS SET OPTIONS':
+    'prefix': 'alterviewifexists'
+    'body': """
+      ALTER VIEW IF EXISTS `${1:project}.${2:dataset}.${3:view}`
+      SET OPTIONS (
+      \tdescription = "description",
+      \texpiration_timestamp = TIMESTAMP "YYYY-MM-DD HH:MI:SS UTC",
+      \tfriendly_name = "friendly_name",
+      \tlabels = [("key", "value")]
+      )
     """
 
   'CAST()':
@@ -2197,3 +2256,168 @@
   'ST_UNION_AGG()':
     'prefix': 'stunionagg'
     'body': 'ST_UNION_AGG(${1:geography})'
+
+  'INFORMATION_SCHEMA.SCHEMATA':
+    'prefix': 'informationschemata'
+    'body': 'INFORMATION_SCHEMA.SCHEMATA'
+    'description': """
+      When you query the INFORMATION_SCHEMA.SCHEMATA view, the query results contain one row for each dataset in a project to which the current user has access.
+    """
+
+  'INFORMATION_SCHEMA.SCHEMATA_OPTIONS':
+    'prefix': 'informationschemataoptions'
+    'body': 'INFORMATION_SCHEMA.SCHEMATA_OPTIONS'
+    'description': """
+      When you query the INFORMATION_SCHEMA.SCHEMATA_OPTIONS view, the query results contain one row for each dataset in a project to which the current user has access.
+    """
+
+  'INFORMATION_SCHEMA.TABLES':
+    'prefix': 'informationtables'
+    'body': 'INFORMATION_SCHEMA.TABLES'
+    'description': """
+      When you query the INFORMATION_SCHEMA.TABLES view, the query results contain one row for each table or view in a dataset.
+    """
+
+  'INFORMATION_SCHEMA.TABLE_OPTIONS':
+    'prefix': 'informationtableoptions'
+    'body': 'INFORMATION_SCHEMA.TABLE_OPTIONS'
+    'description': """
+      When you query the INFORMATION_SCHEMA.TABLE_OPTIONS view, the query results contain one row for each table or view in a dataset.
+    """
+
+  'INFORMATION_SCHEMA.COLUMNS':
+    'prefix': 'informationcolumns'
+    'body': 'INFORMATION_SCHEMA.COLUMNS'
+    'description': """
+      When you query the INFORMATION_SCHEMA.COLUMNS view, the query results contain one row for each column (field) in a table.
+    """
+
+  'INFORMATION_SCHEMA.VIEWS':
+    'prefix': 'informationviews'
+    'body': 'INFORMATION_SCHEMA.VIEWS'
+    'description': """
+      When you query the INFORMATION_SCHEMA.VIEWS view, the query results contain one row for each view in a dataset.
+    """
+
+  'SELECT ... FROM INFORMATION_SCHEMA.SCHEMATA':
+    'prefix': 'selectinformationschemata'
+    'body': """
+      SELECT
+      \tcatalog_name,
+      \tschema_name,
+      \tschema_owner,
+      \tcreation_time,
+      \tlast_modified_time,
+      \tlocation
+      FROM
+      \t`${1:project}.INFORMATION_SCHEMA.SCHEMATA`
+      ORDER BY
+      \tschema_name
+    """
+    'description': """
+      When you query the INFORMATION_SCHEMA.SCHEMATA view, the query results contain one row for each dataset in a project to which the current user has access.
+    """
+
+  'SELECT ... FROM INFORMATION_SCHEMA.SCHEMATA_OPTIONS':
+    'prefix': 'selectinformationschemataoptions'
+    'body': """
+      SELECT
+      \tcatalog_name,
+      \tschema_name,
+      \toption_name,
+      \toption_type,
+      \toption_value
+      FROM
+      \t`${1:project}.INFORMATION_SCHEMA.SCHEMATA_OPTIONS`
+      ORDER BY
+      \tschema_name, option_name
+    """
+    'description': """
+      When you query the INFORMATION_SCHEMA.SCHEMATA_OPTIONS view, the query results contain one row for each dataset in a project to which the current user has access.
+    """
+
+  'SELECT ... FROM INFORMATION_SCHEMA.TABLES':
+    'prefix': 'selectinformationtables'
+    'body': """
+      SELECT
+      \ttable_catalog,
+      \ttable_schema,
+      \ttable_name,
+      \ttable_type,
+      \tis_insertable_into,
+      \tis_typed,
+      \tcreation_time
+      FROM
+      \t`${1:project}.${2:dataset}.INFORMATION_SCHEMA.TABLES`
+      ORDER BY
+      \ttable_name
+    """
+    'description': """
+      When you query the INFORMATION_SCHEMA.TABLES view, the query results contain one row for each table or view in a dataset.
+    """
+
+  'SELECT ... FROM INFORMATION_SCHEMA.TABLE_OPTIONS':
+    'prefix': 'selectinformationtableoptions'
+    'body': """
+      SELECT
+      \ttable_catalog,
+      \ttable_schema,
+      \ttable_name,
+      \toption_name,
+      \toption_type,
+      \toption_value
+      FROM
+      \t`${1:project}.${2:dataset}.INFORMATION_SCHEMA.TABLE_OPTIONS`
+      ORDER BY
+      \ttable_name, option_name
+    """
+    'description': """
+      When you query the INFORMATION_SCHEMA.TABLE_OPTIONS view, the query results contain one row for each table or view in a dataset.
+    """
+
+  'SELECT ... FROM INFORMATION_SCHEMA.COLUMNS':
+    'prefix': 'selectinformationcolumns'
+    'body': """
+      SELECT
+      \ttable_catalog,
+      \ttable_schema,
+      \ttable_name,
+      \tcolumn_name,
+      \tordinal_position,
+      \tis_nullable,
+      \tdata_type,
+      \tis_generated,
+      \tgeneration_expression,
+      \tis_stored,
+      \tis_hidden,
+      \tis_updatable,
+      \tis_system_defined,
+      \tis_partitioning_column,
+      \tclustering_ordinal_position
+      FROM
+      \t`${1:project}.${2:dataset}.INFORMATION_SCHEMA.COLUMNS`
+      ORDER BY
+      \ttable_name, ordinal_position
+    """
+    'description': """
+      When you query the INFORMATION_SCHEMA.COLUMNS view, the query results contain one row for each column (field) in a table.
+    """
+
+  'SELECT ... FROM INFORMATION_SCHEMA.VIEWS':
+    'prefix': 'selectinformationviews'
+    'body': """
+      SELECT
+      \ttable_catalog,
+      \ttable_schema,
+      \ttable_name,
+      \tview_definition,
+      \tcheck_option,
+      \tuse_standard_sql
+      FROM
+      \t`${1:project}.${2:dataset}.INFORMATION_SCHEMA.VIEWS`
+      ORDER BY
+      \ttable_name
+    """
+    'description': """
+      When you query the INFORMATION_SCHEMA.VIEWS view, the query results contain one row for each view in a dataset.
+    """

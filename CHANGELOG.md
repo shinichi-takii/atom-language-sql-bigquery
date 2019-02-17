@@ -1,12 +1,220 @@
 # Changelog
 
+## 1.1.0
+1. Added supports `_TABLE_SUFFIX`
+    - Snippet
+        - Prefix
+            - `_table_suffix`
+            - `table_suffix`
+        - Body
+          ```sql
+          _TABLE_SUFFIX BETWEEN "${1:from}" AND "${2:to}"
+          ```
+    - Document  
+      https://cloud.google.com/bigquery/docs/querying-wildcard-tables
+
+2. Added supports `ALTER TABLE SET OPTIONS` statement
+    - Snippet - `ALTER TABLE SET OPTIONS`
+        - Prefix  
+          `altertable`
+        - Body
+          ```sql
+          ALTER TABLE `${1:project}.${2:dataset}.${3:table}`
+          SET OPTIONS (
+            description = "description",
+            expiration_timestamp = TIMESTAMP "YYYY-MM-DD HH:MI:SS UTC",
+            partition_expiration_days = 1,
+            require_partition_filter = false,
+            kms_key_name = "projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEYRING]/cryptoKeys/[KEY]",
+            friendly_name = "friendly_name",
+            labels = [("key", "value")]
+          )
+          ```
+    - Snippet - `ALTER TABLE IF EXISTS SET OPTIONS`
+        - Prefix  
+          `altertableifexists`
+        - Body
+          ```sql
+          ALTER TABLE IF EXISTS `${1:project}.${2:dataset}.${3:table}`
+          SET OPTIONS (
+            description = "description",
+            expiration_timestamp = TIMESTAMP "YYYY-MM-DD HH:MI:SS UTC",
+            partition_expiration_days = 1,
+            require_partition_filter = false,
+            kms_key_name = "projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEYRING]/cryptoKeys/[KEY]",
+            friendly_name = "friendly_name",
+            labels = [("key", "value")]
+          )
+          ```
+    - Document  
+      https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#alter_table_set_options_statement
+
+3. Added supports `ALTER VIEW SET OPTIONS` statement
+    - Snippet - `ALTER VIEW SET OPTIONS`
+        - Prefix  
+          `alterview`
+        - Body
+          ```sql
+          ALTER VIEW `${1:project}.${2:dataset}.${3:view}`
+          SET OPTIONS (
+            description = "description",
+            expiration_timestamp = TIMESTAMP "YYYY-MM-DD HH:MI:SS UTC",
+            friendly_name = "friendly_name",
+            labels = [("key", "value")]
+          )
+          ```
+    - Snippet - `ALTER VIEW IF EXISTS SET OPTIONS`
+        - Prefix  
+          `alterviewifexists`
+        - Body
+          ```sql
+          ALTER VIEW IF EXISTS `${1:project}.${2:dataset}.${3:view}`
+          SET OPTIONS (
+            description = "description",
+            expiration_timestamp = TIMESTAMP "YYYY-MM-DD HH:MI:SS UTC",
+            friendly_name = "friendly_name",
+            labels = [("key", "value")]
+          )
+          ```
+    - Document  
+      https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#alter_view_set_options_statement
+
+4. Added supports `INFORMATION_SCHEMA` views
+    - Document  
+      https://cloud.google.com/bigquery/docs/information-schema-intro
+
+    - Added snippets view names
+
+      |Prefix|Body|
+      |:--|:--|
+      |`informationschemata`|`INFORMATION_SCHEMA.SCHEMATA`|
+      |`informationschemataoptions`|`INFORMATION_SCHEMA.SCHEMATA_OPTIONS`|
+      |`informationtables`|`INFORMATION_SCHEMA.TABLES`|
+      |`informationtableoptions`|`INFORMATION_SCHEMA.TABLE_OPTIONS`|
+      |`informationcolumns`|`INFORMATION_SCHEMA.COLUMNS`|
+      |`informationviews`|`INFORMATION_SCHEMA.VIEWS`|
+
+    - Added snippets view sql
+      - `SELECT ... FROM INFORMATION_SCHEMA.SCHEMATA`
+        - Prefix  
+          `selectinformationschemata`
+        - Body
+          ```sql
+          SELECT
+            catalog_name,
+            schema_name,
+            schema_owner,
+            creation_time,
+            last_modified_time,
+            location
+          FROM
+            `project.INFORMATION_SCHEMA.SCHEMATA`
+          ORDER BY
+            schema_name
+          ```
+      - `SELECT ... FROM INFORMATION_SCHEMA.SCHEMATA_OPTIONS`
+        - Prefix  
+          `selectinformationschemataoptions`
+        - Body
+          ```sql
+          SELECT
+            catalog_name,
+            schema_name,
+            option_name,
+            option_type,
+            option_value
+          FROM
+            `project.INFORMATION_SCHEMA.SCHEMATA_OPTIONS`
+          ORDER BY
+            schema_name, option_name
+          ```
+      - `SELECT ... FROM INFORMATION_SCHEMA.TABLES`
+        - Prefix  
+          `selectinformationtables`
+        - Body
+          ```sql
+          SELECT
+            table_catalog,
+            table_schema,
+            table_name,
+            table_type,
+            is_insertable_into,
+            is_typed,
+            creation_time
+          FROM
+            `project.${2:dataset}.INFORMATION_SCHEMA.TABLES`
+          ORDER BY
+            table_name
+          ```
+      - `SELECT ... FROM INFORMATION_SCHEMA.TABLE_OPTIONS`
+        - Prefix  
+          `selectinformationtableoptions`
+        - Body
+          ```sql
+          SELECT
+            table_catalog,
+            table_schema,
+            table_name,
+            option_name,
+            option_type,
+            option_value
+          FROM
+            `project.dataset.INFORMATION_SCHEMA.TABLE_OPTIONS`
+          ORDER BY
+            table_name, option_name
+          ```
+      - `SELECT ... FROM INFORMATION_SCHEMA.COLUMNS`
+        - Prefix  
+          `selectinformationcolumns`
+        - Body
+          ```sql
+          SELECT
+            table_catalog,
+            table_schema,
+            table_name,
+            column_name,
+            ordinal_position,
+            is_nullable,
+            data_type,
+            is_generated,
+            generation_expression,
+            is_stored,
+            is_hidden,
+            is_updatable,
+            is_system_defined,
+            is_partitioning_column,
+            clustering_ordinal_position
+          FROM
+            `project.dataset.INFORMATION_SCHEMA.COLUMNS`
+          ORDER BY
+            table_name, ordinal_position
+          ```
+      - `SELECT ... FROM INFORMATION_SCHEMA.VIEWS`
+        - Prefix  
+          `selectinformationviews`
+        - Body
+          ```sql
+          SELECT
+            table_catalog,
+            table_schema,
+            table_name,
+            view_definition,
+            check_option,
+            use_standard_sql
+          FROM
+            `project.dataset.INFORMATION_SCHEMA.VIEWS`
+          ORDER BY
+            table_name
+          ```
+
+
 ## 1.0.0
 1. Added supports new function `ML.PREDICT`
   - Supported syntax highlighting
   - Added snippets of `ML.PREDICT` function
       - Prefix  
         `mlpredict`
-      - body
+      - Body
         ```sql
         ML.PREDICT(MODEL `project.dataset.model`,
           {TABLE table_name | (query_statement)},
@@ -21,7 +229,7 @@
   - Snippet supports to addition of standardization parameter.
     - Prefix  
       `mlpredict`
-    - body
+    - Body
       - old
         ```sql
         ML.WEIGHTS(MODEL `project.dataset.model`)
@@ -45,7 +253,7 @@
     - Added snippets of `ML.CONFUSION_MATRIX` function
         - Prefix  
           `mlconfusionmatrix`
-        - body
+        - Body
           ```sql
           ML.CONFUSION_MATRIX(MODEL `project.dataset.model`,
             {TABLE table_name | (query_statement)},
@@ -105,7 +313,7 @@
     - Added snippets of `ML.TRAINING_INFO` function
         - Prefix  
           `mltraininginfo`
-        - body
+        - Body
           ```sql
           ML.TRAINING_INFO(MODEL `project.dataset.model`)
           ```
@@ -114,7 +322,7 @@
     - Added snippets of `ML.FEATURE_INFO` function
         - Prefix  
           `mlfeatureinfo`
-        - body
+        - Body
           ```sql
           ML.FEATURE_INFO(MODEL `project.dataset.model`)
           ```
@@ -123,7 +331,7 @@
     - Added snippets of `ML.WEIGHTS` function
         - Prefix  
           `mlweights`
-        - body
+        - Body
           ```sql
           ML.WEIGHTS(MODEL `project.dataset.model`)
           ```
@@ -140,7 +348,7 @@
     - Added snippets of `CREATE MODEL` statement
         - Prefix  
           `create model`
-        - body
+        - Body
           ```sql
           CREATE MODEL | CREATE MODEL IF NOT EXISTS | CREATE OR REPLACE MODEL `project.dataset.model`
           [OPTIONS(model_option_list)]
@@ -149,7 +357,7 @@
     - Added snippets of `ML.EVALUATE` function
         - Prefix  
           `mlevaluate`
-        - body
+        - Body
           ```sql
           ML.EVALUATE(MODEL `project.dataset.model`,
             {TABLE table_name | (query_statement)},
@@ -158,7 +366,7 @@
     - Added snippets of `ML.ROC_CURVE` function
         - Prefix  
           `mlroccurve`
-        - body
+        - Body
           ```sql
           ML.ROC_CURVE(MODEL `project.dataset.model`,
             {TABLE table_name | (query_statement)},
@@ -174,7 +382,7 @@
         - JavaScript UDF
             - Prefix  
               `create function javascript`
-            - body
+            - Body
               ```sql
               CREATE TEMPORARY FUNCTION functionName(param_name param_type[, ...])
               RETURNS data_type
@@ -185,7 +393,7 @@
         - SQL UDF
             - Prefix  
               `create function sql`
-            - body
+            - Body
               ```sql
               CREATE TEMPORARY FUNCTION functionName(param_name param_type[, ...])
               [RETURNS data_type]
@@ -287,7 +495,7 @@
     - Snippet
         - Prefix  
           `create table as select`
-        - body  
+        - Body  
           ```sql
           CREATE TABLE `project.dataset.table`
           (
@@ -305,9 +513,9 @@
 
     - Snippet
         - Prefix
-              - `create table options`
-              - `options`
-        - body
+            - `create table options`
+            - `options`
+        - Body
           ```sql
           OPTIONS (
             description = "description",
@@ -333,7 +541,7 @@
     - Snippet
         - Prefix  
           `merge`
-        - body
+        - Body
           ```sql
           MERGE INTO target_name t
           USING source_name s
