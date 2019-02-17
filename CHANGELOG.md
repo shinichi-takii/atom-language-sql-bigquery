@@ -1,7 +1,7 @@
 # Changelog
 
 ## 1.1.0
-1. Added snippet `_TABLE_SUFFIX`
+1. Added supports `_TABLE_SUFFIX`
     - Snippet
         - Prefix
             - `_table_suffix`
@@ -13,7 +13,7 @@
     - Document  
       https://cloud.google.com/bigquery/docs/querying-wildcard-tables
 
-2. Added snippet `ALTER TABLE SET OPTIONS` statement
+2. Added supports `ALTER TABLE SET OPTIONS` statement
     - Snippet - `ALTER TABLE SET OPTIONS`
         - Prefix  
           `altertable`
@@ -49,7 +49,7 @@
     - Document  
       https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language#alter_table_set_options_statement
 
-3. Added snippet `ALTER VIEW SET OPTIONS` statement
+3. Added supports `ALTER VIEW SET OPTIONS` statement
     - Snippet - `ALTER VIEW SET OPTIONS`
         - Prefix  
           `alterview`
