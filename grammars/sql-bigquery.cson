@@ -39,7 +39,7 @@
         'name': 'entity.name.function.sql'
       '6':
         'name': 'invalid.illegal.table.delimiter.sql'
-    'match': '(?i:^\\s*(create(?:\\s+or\\s+replace)?|drop)\\s+(table|view|model)\\b(?:\\s+(if(?:\\s+not)?\\s+exists)\\b)?)(?:\\s+(`?)((?:[\\w\\-\\{\\}]+(?:\\.|(\\:)))?(?:[\\w\\{\\}]+\\.)?[\\w\\{\\}\\*]+)\\4)?'
+    'match': '(?i:^\\s*(create(?:\\s+or\\s+replace)?|drop|alter)\\s+(table|view|model)\\b(?:\\s+(if(?:\\s+not)?\\s+exists)\\b)?)(?:\\s+(`?)((?:[\\w\\-\\{\\}]+(?:\\.|(\\:)))?(?:[\\w\\{\\}]+\\.)?[\\w\\{\\}\\*]+)\\4)?'
     'name': 'meta.create.sql'
   }
   {
@@ -82,7 +82,7 @@
         'name': 'invalid.illegal.table.delimiter.sql'
       '9':
         'name': 'variable.parameter.table.legacy.sql'
-    'match': '(?i)(from|join|delete\\s+from|delete(?!\\s+from)|update|using)\\s+((`?)((?:[\\w\\-\\{\\}]+(?:\\.|(\\:)))?(?:[\\w\\{\\}]+\\.)?[\\w\\{\\}]+)(\\*|\\$\\w+)?\\3?|\\[((?:[\\w\\-\\{\\}]+(?:\\:|(\\.)))?(?:[\\w\\{\\}]+\\.)?[\\w\\{\\}]+)(\\*|\\$\\w+)?\\])'
+    'match': '(?i)(from|join|delete\\s+from|delete(?!\\s+from)|update|using)\\s+((`?)((?:[\\w\\-\\{\\}]+(?:\\.|(\\:)))?(?:[\\w\\{\\}]+\\.)?(?:INFORMATION_SCHEMA\\.\\w+|[\\w\\{\\}]+))(\\*|\\$\\w+)?\\3?|\\[((?:[\\w\\-\\{\\}]+(?:\\:|(\\.)))?(?:[\\w\\{\\}]+\\.)?[\\w\\{\\}]+)(\\*|\\$\\w+)?\\])'
     'name': 'meta.create.from.sql'
   }
   {
@@ -112,7 +112,7 @@
         'name': 'invalid.illegal.table.delimiter.sql'
       '7':
         'name': 'variable.parameter.table.legacy.sql'
-    'match': '^\\s*(?:(`)((?:[\\w\\-\\{\\}]+(?:\\.|(\\:)))?(?:[\\w\\{\\}]+\\.)?[\\w\\{\\}]+)(\\*|\\$\\w+)?\\1|\\[((?:[\\w\\-\\{\\}]+(?:\\:|(\\.)))?(?:[\\w\\{\\}]+\\.)?[\\w\\{\\}]+)(\\*|\\$\\w+)?\\])'
+    'match': '^\\s*(?:(`)((?:[\\w\\-\\{\\}]+(?:\\.|(\\:)))?(?:[\\w\\{\\}]+\\.)?(?:INFORMATION_SCHEMA\\.\\w+|[\\w\\{\\}]+))(\\*|\\$\\w+)?\\1|\\[((?:[\\w\\-\\{\\}]+(?:\\:|(\\.)))?(?:[\\w\\{\\}]+\\.)?[\\w\\{\\}]+)(\\*|\\$\\w+)?\\])'
     'name': 'meta.other.table.sql'
   }
   {
