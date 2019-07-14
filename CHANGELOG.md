@@ -1,6 +1,32 @@
 # Changelog
 
-## 1.2.0
+## [1.3.0] - 2019-07-14
+### Added
+- Add BigQuery ML supports the `DROP MODEL` DDL statement for deleting models.
+
+### Changed
+- Add description option to `CREATE TABLE` statements.
+  - Example
+    - Prefix  
+      `create table`
+    - Body
+      - old
+        ```sql
+        CREATE TABLE `project.dataset.table`
+        (
+          column type
+        )
+        ```
+      - new
+        ```sql
+        CREATE TABLE `project.dataset.table`
+        (
+          column type OPTIONS (description = "comment")
+        )
+        ```
+
+
+## [1.2.0] - 2019-04-21
 1. Add supports AEAD encryption functions
     - Supported syntax highlighting
     - Added snippets
@@ -22,7 +48,7 @@
 2. Miner fixed
 
 
-## 1.1.0
+## [1.1.0] - 2019-02-17
 1. Added supports `_TABLE_SUFFIX`
     - Snippet
         - Prefix
@@ -230,7 +256,7 @@
           ```
 
 
-## 1.0.0
+## [1.0.0] - 2019-01-01
 1. Added supports new function `ML.PREDICT`
   - Supported syntax highlighting
   - Added snippets of `ML.PREDICT` function
@@ -269,7 +295,7 @@
 3. Fix syntax highlighting of strings
 
 
-## 0.2.8
+## [0.2.8] - 2018-09-15
 1. Added supports 'BigQuery ML' functions
     - Supported syntax highlighting
     - Added snippets of `ML.CONFUSION_MATRIX` function
@@ -329,7 +355,7 @@
       |`ST_PERIMETER`|`stperimeter`|`ST_PERIMETER(geography_expression[, spheroid=FALSE])`|
       |`ST_UNION_AGG`|`stunionagg`|`ST_UNION_AGG(geography)`|
 
-## 0.2.7
+## [0.2.7] - 2018-09-02
 1. Added supports 'BigQuery ML' Functions
     - Supported syntax highlighting
     - Added snippets of `ML.TRAINING_INFO` function
@@ -360,7 +386,7 @@
         - Document  
           https://cloud.google.com/bigquery/docs/reference/standard-sql/bigqueryml-syntax-weights
 
-## 0.2.6
+## [0.2.6] - 2018-09-01
 1. Added supports 'BOOL' data type
     - Supported syntax highlighting
     - Document  
@@ -397,7 +423,7 @@
     - Document  
       https://cloud.google.com/bigquery/docs/bigqueryml
 
-## 0.2.5
+## [0.2.5] - 2018-08-15
 1. Added supports UDF(User-Defined Functions)
     - Supported 'JavaScript UDF' highlighting
     - Added snippets of UDF
@@ -426,7 +452,7 @@
     - Document  
       https://cloud.google.com/bigquery/docs/reference/standard-sql/user-defined-functions
 
-## 0.2.4
+## [0.2.4] - 2018-08-06
 1. Add supports new function 'GENERATE_TIMESTAMP_ARRAY', 'FROM_BASE32' and 'TO_BASE32'
     - GENERATE_TIMESTAMP_ARRAY
         - Function  
@@ -469,7 +495,7 @@
 
 4. Miner fix
 
-## 0.2.3
+## [0.2.3] - 2018-06-03
 1. Add support 'NUMERIC' data type
     - BigQuery added support for `NUMERIC` data type on May 15, 2018.
 
@@ -492,7 +518,7 @@
 
 3. Miner fix
 
-## 0.2.2
+## [0.2.2] - 2018-05-02
 1. Add new function 'ERROR'
 
     - Function  
@@ -578,30 +604,50 @@
 
 6. Miner fix
 
-## 0.2.1
+## [0.2.1] - 2018-02-26
 - Add snippets.
   - `split` -> `SPLIT(value[, delimiter])`
   - `year` -> `EXTRACT(YEAR FROM date_expression)`
   - `month` -> `EXTRACT(MONTH FROM date_expression)`
   - `day` -> `EXTRACT(DAY FROM date_expression)`
 
-## 0.2.0
+## [0.2.0] - 2018-02-05
 - Create snippets.
 - Minor fixes.
 
-## 0.1.5
+## [0.1.5] - 2018-02-03
 - Support partition decorator.
 - Fix regexps content attribute.
 
-## 0.1.4
+## [0.1.4] - 2018-01-31
 - Support for delete statement of tablename highlight.
   - Add `DELETE FROM <tablename>` highlight regrexp.
 
-## 0.1.3
+## [0.1.3] - 2018-01-29
 - Fix table name regexp.
 
-## 0.1.2
+## [0.1.2] - 2018-01-29
 - Fix GCP Project ID regexp.
 
-## 0.1.1
+## [0.1.1] - 2018-01-29
 - Initial released.
+
+
+[1.3.0]: https://github.com/shinichi-takii/atom-language-sql-bigquery/compare/v1.2.0...v1.3.0
+[1.2.0]: https://github.com/shinichi-takii/atom-language-sql-bigquery/compare/v1.1.0...v1.2.0
+[1.1.0]: https://github.com/shinichi-takii/atom-language-sql-bigquery/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/shinichi-takii/atom-language-sql-bigquery/compare/v0.2.8...v1.0.0
+[0.2.8]: https://github.com/shinichi-takii/atom-language-sql-bigquery/compare/v0.2.7...v0.2.8
+[0.2.7]: https://github.com/shinichi-takii/atom-language-sql-bigquery/compare/v0.2.6...v0.2.7
+[0.2.6]: https://github.com/shinichi-takii/atom-language-sql-bigquery/compare/v0.2.5...v0.2.6
+[0.2.5]: https://github.com/shinichi-takii/atom-language-sql-bigquery/compare/v0.2.4...v0.2.5
+[0.2.4]: https://github.com/shinichi-takii/atom-language-sql-bigquery/compare/v0.2.3...v0.2.4
+[0.2.3]: https://github.com/shinichi-takii/atom-language-sql-bigquery/compare/v0.2.2...v0.2.3
+[0.2.2]: https://github.com/shinichi-takii/atom-language-sql-bigquery/compare/v0.2.1...v0.2.2
+[0.2.1]: https://github.com/shinichi-takii/atom-language-sql-bigquery/compare/v0.2.0...v0.2.1
+[0.2.0]: https://github.com/shinichi-takii/atom-language-sql-bigquery/compare/v0.1.5...v0.2.0
+[0.1.5]: https://github.com/shinichi-takii/atom-language-sql-bigquery/compare/v0.1.4...v0.1.5
+[0.1.4]: https://github.com/shinichi-takii/atom-language-sql-bigquery/compare/v0.1.3...v0.1.4
+[0.1.3]: https://github.com/shinichi-takii/atom-language-sql-bigquery/compare/v0.1.2...v0.1.3
+[0.1.2]: https://github.com/shinichi-takii/atom-language-sql-bigquery/compare/v0.1.1...v0.1.2
+[0.1.1]: https://github.com/shinichi-takii/atom-language-sql-bigquery/releases/tag/v0.1.1
